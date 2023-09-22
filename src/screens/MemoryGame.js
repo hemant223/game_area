@@ -167,7 +167,6 @@ const MemoryGame = () => {
   const [redCount, setRedCount] = useState(0)
   const [toogleCount, setToogleCount] = useState(true)
   const [showWinUI, setShowWinUI] = useState()
-  const [showWinName, setShowWinName] = useState('')
 
   const shuffleItems = () => {
     const shuffledItems = shuffleArray([...items]);
@@ -240,23 +239,18 @@ const forWinGame=()=>{
   const areAllStatusTrue = items.every(item => item.status === true);
   if(areAllStatusTrue){
     setShowWinUI(
-      <View style={{position:'absolute',zIndex:1,}}>
-        <Text style={{color:'red',fontSize:100}}>Win</Text>
+      redCount>greenCount? <View style={{position:'absolute',zIndex:1,}}>                      
+        <Text style={{color:'red',fontSize:80}}>Red Win</Text>                      
+      </View>:redCount===greenCount?<View style={{position:'absolute',zIndex:1,}}>                      
+        <Text style={{color:'#fff',fontSize:50}}>Draw</Text>                      
+      </View>:<View style={{position:'absolute',zIndex:1,}}>                      
+        <Text style={{color:'green',fontSize:50}}>Green Win</Text>                      
       </View>
     )
   setTimeout(() => {
-    navigation.navigate('Dashboard')
-  }, 2000);
-  if(redCount>greenCount){
-    setShowWinName('Red')
-  }else if(redCount===greenCount){
-    setShowWinName('Draw')
-  }else{
-    setShowWinName('Green')
-  }
+    // navigation.navigate('Dashboard')
+  }, 5000);
 }
-
-
 }
 useEffect(() => {
   forWinGame();
@@ -273,20 +267,16 @@ useEffect(() => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-          
-           { showWinUI&& showWinUI }
+       
+      { showWinUI&& showWinUI } 
+       
 
         <TouchableOpacity onPress={()=>{handleExit();}} style={{position:'absolute',top:105,right:-12,backgroundColor:'#fff', transform: [{ rotate: '270deg'}],zIndex:1,paddingVertical:20,paddingHorizontal:25,borderTopLeftRadius:50,borderTopRightRadius:50}}>
           <Text style={{color:'#353b48',letterSpacing:3,fontWeight:900}}>Exit</Text>
         </TouchableOpacity>
-      {/* <TouchableOpacity
-        onPress={shuffleItems}
-        style={{padding: 10, backgroundColor: 'red',marginBottom:10}}>
-        <Text>Button</Text>
-      </TouchableOpacity> */}
       <View
-        style={{width:50, backgroundColor: '#fff',borderRadius:10,borderColor: toogleCount?'#000':'#27ae60',borderWidth:toogleCount?3:1,marginBottom:5}}>
-        <Text style={{color:'#27ae60',textAlign:'center'}}>{greenCount}</Text>
+        style={{width:50, backgroundColor: '#27ae60',borderRadius:10,borderColor: toogleCount?'#000':'#27ae60',borderWidth:toogleCount?3:1,marginBottom:5}}>
+        <Text style={{color:'#fff',textAlign:'center'}}>{greenCount}</Text>
       </View>
       <View
         style={{
@@ -304,17 +294,11 @@ useEffect(() => {
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
+            opacity:showWinUI?0.2:null
           }}>
           {items.map((itm, ind) => {
-            // const match = itm.id == selectedId;
-            // itm['status']=  match && true
-              
-
             return (
-              <TouchableOpacity
-                onPress={() => {
-                  handleSelectedCardItem(itm, ind);
-                }}
+             itm.status? <View
                 key={ind}
                 style={{
                   width: 70,
@@ -332,14 +316,35 @@ useEffect(() => {
                 {itm.status && (
                   <Image style={{width: 50, height: 50}} source={itm.img} />
                 )}
+              </View>:
+              <TouchableOpacity
+                onPress={() => {
+                  handleSelectedCardItem(itm, ind);
+                }}
+                key={ind}
+                style={{
+                  width: 70,
+                  height: 70,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#f0932b',
+                  margin: 5,
+                  borderWidth: 5,
+                  borderRadius: 5,
+                  borderColor: '#fff',
+                  position: 'relative',
+                }}>
+                {itm.status && (
+                  <Image style={{width: 50, height: 50}} source={itm.img} />
+                )}
               </TouchableOpacity>
             );
           })}
         </View>
       </View>
       <View
-        style={{width:50, backgroundColor: '#fff',borderRadius:10,borderColor:toogleCount?'red':'#000',borderWidth:toogleCount?1:3,marginTop:5}}>
-        <Text style={{color:'red',textAlign:'center'}}>{redCount}</Text>
+        style={{width:50, backgroundColor: '#ff6b6b',borderRadius:10,borderColor:toogleCount?'red':'#000',borderWidth:toogleCount?1:3,marginTop:5}}>
+        <Text style={{color:'#fff',textAlign:'center'}}>{redCount}</Text>
       </View>
     </View>
   );

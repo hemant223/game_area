@@ -7,6 +7,7 @@ import DrawerNavigation from '../drawerNavigation/DrawerNavigation';
 import Dashboard from '../../screens/Dashboard';
 import StartGame from '../../screens/StartGame';
 import Tic_Tac_Toe from '../../screens/Tic_Tac_Toe';
+import SnakeGame from '../../screens/SnakeGame';
 
 const MainNavigationStack = props => {
   const Stack = createStackNavigator();
@@ -17,6 +18,11 @@ const MainNavigationStack = props => {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SnakeGame"
+          component={SnakeGame}
           options={{headerShown: false}}
         />
         <Stack.Screen

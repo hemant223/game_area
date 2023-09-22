@@ -91,14 +91,16 @@ useEffect(() => {
       </View>
     <View style={{flexDirection:'row',flexWrap:'wrap',opacity:forOpacity?0.2:null,backgroundColor:'#7f8fa6',width:'80%',alignSelf:'center',justifyContent:'center'}}>
    {
-    items.map((item,index)=>{
+    items.map((item,index)=>(
        
-    return(
+      item.status?<View  key={index} style={{width:80,height:80,backgroundColor:'#7f8fa6',borderTopWidth:item.borderTopWidth,borderRightWidth:item.borderRightWidth,borderBottomWidth:item.borderBottomWidth,borderLeftWidth:item.borderLeftWidth,alignItems:'center',justifyContent:'center'}} >
+           {item.img &&item.imgWidth &&<Image style={{width: item.imgWidth, height: 50}} source={item.img} /> }
+        </View>:
         <TouchableOpacity onPress={()=>{handleBtn(item);}} key={index} style={{width:80,height:80,backgroundColor:'#7f8fa6',borderTopWidth:item.borderTopWidth,borderRightWidth:item.borderRightWidth,borderBottomWidth:item.borderBottomWidth,borderLeftWidth:item.borderLeftWidth,alignItems:'center',justifyContent:'center'}} >
            {item.img &&item.imgWidth &&<Image style={{width: item.imgWidth, height: 50}} source={item.img} /> }
         </TouchableOpacity>
-    )
-    })
+    
+    ))
    }
     </View>
     <View style={{width:'100%',height:70,alignItems:'center',opacity:forOpacity?0.2:null}} >
