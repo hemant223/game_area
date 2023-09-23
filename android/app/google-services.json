@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813526135148",
+    "project_id": "testing-3dc84",
+    "storage_bucket": "testing-3dc84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813526135148:android:2c0b10f77c496fddf88349",
+        "android_client_info": {
+          "package_name": "com.game_area"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQDxPBYHXQlAzOTESxp1TaSGXcja4R7y8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
